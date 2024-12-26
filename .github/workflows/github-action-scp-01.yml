@@ -14,4 +14,6 @@ jobs:
           key: ${{ secrets.EC2_PRIVATE_KEY }}
           source: app.jar
           target: /home/ubuntu/app
-          
+
+      - name: Check file permissions
+        run: ls -la app.jar
