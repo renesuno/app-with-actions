@@ -5,6 +5,15 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
+      - name: From Github Actions to AWS EC2 through SCP
+        uses: appleboy/scp-action@v0.1.7
+        with: 
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USERNAME }}
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+          source: app.jar
+          target: /home/ubuntu/app
+    
       - name: Connecting EC2 through SSH
         uses: appleboy/ssh-action@v1.2.0
         with:
