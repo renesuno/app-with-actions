@@ -11,6 +11,7 @@ jobs:
           path: hello.txt
   download:
     runs-on: ubuntu-latest
+    needs: upload
     steps:
       - run: cat hello.txt
         continue-on-error: true
