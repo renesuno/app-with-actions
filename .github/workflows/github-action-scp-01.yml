@@ -6,6 +6,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Check file permissions
+        run: ls -la app.jar
       - name: From Github Actions to AWS EC2 through SCP
         uses: appleboy/scp-action@v0.1.7
         with: 
@@ -15,5 +17,4 @@ jobs:
           source: app.jar
           target: /home/ubuntu/app
 
-      - name: Check file permissions
-        run: ls -la app.jar
+
