@@ -67,8 +67,3 @@ jobs:
           sudo docker run -d -p 8080:8080 \
           -e TZ=Asia/Seoul \
           ${{ secrets.DOCKERHUB_USERNAME }}/app-with-actions-docker
-
-
-
-
-          
