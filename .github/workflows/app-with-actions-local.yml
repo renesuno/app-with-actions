@@ -1,11 +1,11 @@
 name: App with Github Actions CI/CD
 
 on:
-  workflow_dispatch
-  # push:
-  #   branches: [ "main" ]
-  # pull_request:
-  #   branches: [ "main" ]
+  # workflow_dispatch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
 
 jobs:
   ci: 
@@ -21,7 +21,7 @@ jobs:
         cache: maven
 
     - name: Create properties file from secret
-      run: echo "${{ secrets.API_PROPERTIES }}" > ./src/main/resources/application.properties
+      run: echo "${{ secrets.APP2_PROPERTIES }}" > ./src/main/resources/application.properties
 
     - name: Build with Maven
       run: mvn -B package --file pom.xml
