@@ -59,15 +59,6 @@ jobs:
         host: ${{ secrets.EC2_HOST }}
         username: ${{ secrets.EC2_USERNAME }}
         key: ${{ secrets.EC2_PRIVATE_KEY }}
-      env:
-        SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
-        SPRING_DATASOURCE_URL: jdbc:mysql://${{ secrets.EC2_HOST }}:3306/appactions?serverTimezone=Asia/Seoul
-        SPRING_DATASOURCE_USERNAME: app-actions
-        SPRING_DATASOURCE_PASSWORD: app-actions
-        SPRING_JPA_GENERATE_DDL: 'false'
-        SPRING_JPA_HIBERNATE_DDL_AUTO: update
-        SPRING_JPA_PROPERTIES_HIBERNATE_FORMAT_SQL: 'true'
-        SPRING_JPA_SHOW_SQL: 'true'
         script: |
           mkdir -p /home/ubuntu/app/deploy
           mv /home/ubuntu/app/*.jar /home/ubuntu/app/deploy/app.jar
