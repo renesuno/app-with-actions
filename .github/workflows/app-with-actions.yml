@@ -20,6 +20,9 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
+    - name: Create properties file from secret
+      run: echo "${{ secrets.API_PROPERTIES }}" > ./src/main/resources/application.properties
+
     - name: Build with Maven
       run: mvn -B package --file pom.xml
       
@@ -52,9 +55,6 @@ jobs:
         key: ${{ secrets.EC2_PRIVATE_KEY }}
         source: "*.jar"
         target: "/home/ubuntu/app"
-
-    - name: Create properties file from secret
-      run: echo "${{ secrets.API_PROPERTIES }}" > /home/ubuntu/app/deploy/application.properties
       
     - name: Execute deployment script
       uses: appleboy/ssh-action@v1.2.0
@@ -67,6 +67,5 @@ jobs:
           mv /home/ubuntu/app/*.jar /home/ubuntu/app/deploy/app.jar
           sudo fuser -k -n tcp 8080 || true
           cd /home/ubuntu/app/deploy  
-          echo "${{ secrets.API_PROPERTIES }}" > /home/ubuntu/app/deploy/application.properties
-          nohup java -jar app.jar --spring.config.location=file:/home/ubuntu/app/deploy/application.properties > ./output.log 2>&1 &
+          nohup java -jar app.jar > ./output.log 2>&1 &
           
