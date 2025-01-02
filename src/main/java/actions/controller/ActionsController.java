@@ -23,7 +23,7 @@ public class ActionsController {
 	// 테스트
 	@GetMapping(value = "/api/actions")
 	public String actionsTest() {
-		return "app-with-actions version:0.0.4";
+		return "app-with-actions version:0.1.0";
 	}	
 	
 	// 모든 학생 조회
